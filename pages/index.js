@@ -1,13 +1,14 @@
 import Head from "next/head";
-import packageJson from "../package.json";
 
 export default function Home(props) {
   /** You can access to liff and liffError object through the props.
    *  Learn more about LIFF API documentation (https://developers.line.biz/en/reference/liff)
    **/
   const { liff, liffError } = props;
-  console.log(liff.getVersion());
-  const profile = liff.getProfile();
+
+  if (!liff && !liffError) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
